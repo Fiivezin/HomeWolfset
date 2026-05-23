@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Etiqueta Serviços Tercerizados</title>
+    <link rel="icon" href="./logo.ico">
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="painel">
+
+    <h1>Etiquetas Profissionais</h1>
+
+    <div class="topo">
+
+        <div>
+            <label>Logo</label>
+            <input type="file" id="logoInput" accept="image/*">
+        </div>
+
+        <div>
+            <label>Tipo de Impressão</label>
+            <select id="tipoImpressao">
+                <option value="a4">A4</option>
+                <option value="80mm">Bobina 80mm</option>
+            </select>
+        </div>
+
+        <div>
+            <label>Quantidade de Etiquetas</label>
+            <select id="quantidade" onchange="criarCampos()">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4" selected>4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="editor" id="editor"></div>
+
+    <div class="botoes">
+        <button class="gerar" onclick="gerarEtiquetas()">Gerar Etiquetas</button>
+        <button class="imprimir" onclick="window.print()">Imprimir</button>
+    </div>
+
+    <div class="folha" id="folha"></div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

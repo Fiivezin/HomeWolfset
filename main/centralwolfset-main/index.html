@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Central de Mensagens Wolfset</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Expletus+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="./media/logo.png">
+</head>
+<body>
+<div class="container">
+    <h1>Wolfset🐺</h1>
+
+    <form id="messageForm">
+        <label for="messageType">Selecione o Tipo de Mensagem:</label><br>
+        <select id="messageType" name="messageType">
+            <option value="Padrao">Aparelho Pronto</option>
+            <option value="AvaliacaoPronta">Avaliação Pronta</option>
+            <option value="AguardandoPeca">Aguardando Peça</option>
+            <option value="Personalizada">Mensagem Personalizada</option>
+        </select><br><br>
+
+        <div id="messageInput" style="display:none;">
+            <label for="message">Mensagem Personalizada:</label><br>
+            <textarea id="message" name="message" rows="4" cols="50"></textarea><br><br>
+        </div>
+
+        <label for="phoneNumber">Número de Telefone (DDD, sem espaços ou caracteres especiais):</label><br>
+        <input type="text" id="phoneNumber" name="phoneNumber"><br><br>
+
+        <input type="submit" value="Enviar Mensagem">
+    </form>
+
+    <h3>By Fiivezin 🙈</h3>
+</div>
+
+<script>
+document.getElementById('messageType').addEventListener('change', function () {
+    const messageInput = document.getElementById('messageInput');
+    messageInput.style.display = this.value === 'Personalizada' ? 'block' : 'none';
+});
+
+document.getElementById('messageForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const type  = document.getElementById('messageType').value;
+    const phone = document.getElementById('phoneNumber').value.replace(/[-().\s]/g, '');
+    let   message = '';
+
+    switch (type) {
+        case 'Personalizada':
+            message = document.getElementById('message').value;
+            break;
+
+        case 'AvaliacaoPronta':
+            message = `📱 Prezado Cliente,
+
+Temos boas notícias! A avaliação técnica do seu aparelho foi concluída e já temos o diagnóstico completo.
+
+Entre em contato conosco ou visite a loja para conhecer os detalhes e autorizar o serviço, caso deseje prosseguir. Estamos à disposição para esclarecer qualquer dúvida.
+
+Agradecemos pela confiança em nossos serviços!
+*Entrar em contato nesse número:* *(15) 99669-5339*
+
+Atenciosamente,
+Equipe Wolfset🐺.`;
+            break;
+
+        case 'AguardandoPeca':
+            message = `📱 Prezado Cliente,
+
+Gostaríamos de informar que, infelizmente, precisaremos de um pouco mais de tempo para concluir a manutenção do seu aparelho. Estamos aguardando a chegada da peça de reposição necessária para realizar o reparo.
+
+Pedimos desculpas pelo transtorno e garantimos que prosseguiremos assim que a peça chegar.
+
+Agradecemos pela compreensão! 🙏
+*Entrar em contato nesse número:* *(15) 99669-5339*
+
+Atenciosamente,
+Equipe Wolfset🐺.`;
+            break;
+
+        default: // Aparelho Pronto
+            message = `📱 Prezado Cliente,
+
+É com satisfação que informamos que o seu aparelho está pronto para ser retirado em nossa loja!
+
+Horário de atendimento:
+• Seg-sex 09h-18h
+• Sábados 09h-13h
+
+Qualquer dúvida, estamos à disposição.
+*Entrar em contato nesse número:* *(15) 99669-5339*
+
+Atenciosamente,
+Equipe Wolfset🐺.`;
+            break;
+    }
+
+    const whatsappLink =
+        'https://api.whatsapp.com/send?phone=' +
+        encodeURIComponent(phone) +
+        '&text=' +
+        encodeURIComponent(message);
+
+    window.open(whatsappLink, '_blank', 'noopener,noreferrer');
+});
+</script>
+</body>
+</html>

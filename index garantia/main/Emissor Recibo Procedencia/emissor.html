@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta htt-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Procedencia WolfSet</title>
+     <link rel="stylesheet" href="main.css">
+     <link rel="icon" href="./logo.ico">
+</head>
+
+<body>
+    <div class="dados">
+        <h1>Recibo de Responsabilidade</h1>
+        <br/>
+        <h2>Cliente: </h2><br/>
+        <input type="text" id="cliente" /> <br /><br />
+        <h2>CPF: </h2><br/>
+        <input type="text" id="cpf" /> <br /><br />
+        <h2>RG: </h2><br/>
+        <input type="text" id="rg" /> <br /><br />
+        <h2>Aparelho:</h2> <br/>
+        <input type="text" id="aparelho" /> <br /><br />
+        <h2>IMEI: </h2> <br/>
+        <input type="text" id="imei" /> <br /><br />
+        <h3>*Sempre Consultar o IMEI antes </h3> <br/>
+        <form action="https://www.consultaserialaparelho.com.br/public-web/homeSiga" target="_blank">
+            <input type="submit" value="Consultar IMEI" />
+        </form><br /><br />
+        <h2>Valor R$: </h2><br/>
+        <input type="number" step="0,01" id="valor" /> <br /><br />
+        <h2>Estado do Aparelho: </h2><br/>
+        <input type="text" id="vencimento" /> <br  /><br />
+        <button onclick="gerarGarantia()">Gerar Recibo</button>  
+        <br/>   
+        <br/> 
+        <br/> 
+        <br/> 
+        <br/> 
+        <div class="fiive">by FiiveElements</div>
+    </div>
+
+    </div>
+    <div class="print">
+        <h1>Recibo de Procedência</h1>
+        <br/>
+         <p>Cliente: <span id="garantia_cliente"></span></p>
+         <br/>
+         <p>CPF: <span id="garantia_cpf"></span></p>
+         <br/>
+         <p>RG: <span id="garantia_rg"></span></p>
+         <br/>
+         <p>Aparelho: <span id="garantia_aparelho"></span></p>
+         <br/>
+         <p>IMEI do aparelho: <span id="garantia_imei"></span></p>
+         <br/>
+         <p>Valor R$: <span id="garantia_valor">0,00</span></p>
+         <br/>
+         <p>Data: <span id="garantia_data"></span></p>
+         <br/>
+         <p>Estado do aparelho: <span id="garantia_vencimento"></span></p>
+         <br/>
+        <div class="termo">
+           <p>Toda Responsabilidade deste aparelho é 
+            do cliente,
+             livrando o estabelecimento  de qualquer 
+            Responsabilidade sobre o aparelho, assinando este termo
+            o cliente se responsabiliza pelo aparelho. 
+            </p>
+        </div>
+         <br /><br />
+         <br/>
+         <br/>
+         <div class="assinatura">Assinatura</div>
+    </div>
+
+    <script>
+        function gerarGarantia() {
+            document.getElementById('garantia_cliente').innerHTML = document.getElementById('cliente').value;
+            document.getElementById('garantia_cpf').innerHTML = document.getElementById('cpf').value;
+            document.getElementById('garantia_rg').innerHTML = document.getElementById('rg').value;
+            document.getElementById('garantia_aparelho').innerHTML = document.getElementById('aparelho').value;
+            document.getElementById('garantia_imei').innerHTML = document.getElementById('imei').value;
+            document.getElementById('garantia_valor').innerHTML = parseFloat(document.getElementById('valor').value).toLocaleString('pt-br', {minimumFractionDigits: 2});
+            document.getElementById('garantia_data').innerHTML = dataAtual();
+            document.getElementById('garantia_vencimento').innerHTML = document.getElementById('vencimento').value;
+            window.print();
+        }
+        function dataAtual() {
+            let data = new Date();
+            return data.getDate() + "/" + (data.getMonth()+1) + "/" + data.getFullYear();
+        }
+
+    </script>
+</body>
+</html>

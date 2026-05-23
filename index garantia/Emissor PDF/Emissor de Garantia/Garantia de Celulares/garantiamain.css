@@ -1,0 +1,71 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Ubuntu", sans-serif;
+    background: linear-gradient(174deg, #020024 0%, #6e6ed4 56%, #010203 82%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dados {
+    color: white;
+    text-align: center;
+    text-shadow: 0 0 5px #666;
+}
+
+.dados h4 {
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    font-size: 22px;
+    background: #4f4f4f;
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
+
+.print {
+    display: none;
+    font-family: "Ubuntu", sans-serif;
+    padding: 20px;
+}
+
+.logoprint {
+    text-align: center;
+}
+
+.assinatura {
+    text-align: center;
+}
+
+.BUTTON_TRS {
+    background: linear-gradient(to bottom, #020024, #1E62D0);
+    border-radius: 20px;
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    padding: 12px 20px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.BUTTON_TRS:hover {
+    background: linear-gradient(to bottom, #1E62D0, #3D94F6);
+}
+
+@media print {
+    .dados {
+        display: none;
+    }
+    .print {
+        display: block;
+    }
+}

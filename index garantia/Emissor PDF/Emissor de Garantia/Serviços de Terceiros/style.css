@@ -1,0 +1,267 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+}
+
+body{
+    background:#f3f3f3;
+    padding:20px;
+}
+
+.painel{
+    max-width:1200px;
+    margin:auto;
+    background:#fff;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+}
+
+h1{
+    text-align:center;
+    margin-bottom:25px;
+    font-size:30px;
+    font-weight:700;
+}
+
+.topo{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:15px;
+    margin-bottom:25px;
+}
+
+label{
+    display:block;
+    font-size:14px;
+    font-weight:600;
+    margin-bottom:6px;
+}
+
+input,
+textarea,
+select{
+    width:100%;
+    padding:12px;
+    border:1px solid #d9d9d9;
+    border-radius:10px;
+    font-size:15px;
+    outline:none;
+}
+
+textarea{
+    resize:none;
+    height:80px;
+}
+
+.blocoEtiqueta{
+    border:2px dashed #d5d5d5;
+    padding:18px;
+    border-radius:14px;
+    margin-bottom:18px;
+}
+
+.blocoEtiqueta h2{
+    font-size:20px;
+    margin-bottom:15px;
+}
+
+.gridCampos{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.observacao{
+    grid-column:1/-1;
+}
+
+.botoes{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:25px;
+}
+
+button{
+    border:none;
+    padding:14px 24px;
+    border-radius:10px;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+button:hover{
+    transform:scale(1.03);
+}
+
+.gerar{
+    background:#111;
+    color:#fff;
+}
+
+.imprimir{
+    background:#11853b;
+    color:#fff;
+}
+
+.folha{
+    margin-top:35px;
+}
+
+.modoA4{
+    display:grid;
+    grid-template-columns:repeat(2, 7.5cm);
+    justify-content:center;
+    gap:1cm;
+}
+
+.modo80{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:0;
+}
+
+.etiqueta{
+    background:#fff;
+    border:2px solid #000;
+    padding:12px;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+}
+
+.etiquetaA4{
+    width:7.5cm;
+    height:11cm;
+    border-radius:10px;
+}
+
+.etiqueta80{
+    width:80mm;
+    min-height:auto;
+    border-radius:0;
+    border-bottom:2px dashed #000;
+    padding-bottom:12px;
+}
+
+.logo{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-bottom:12px;
+}
+
+.logo img{
+    width:100%;
+    max-height:95px;
+    object-fit:contain;
+}
+
+.item{
+    margin-bottom:10px;
+    overflow:hidden;
+}
+
+.titulo{
+    font-size:14px;
+    font-weight:700;
+    margin-bottom:3px;
+}
+
+.valor{
+    font-size:13px;
+    line-height:1.3;
+    word-break:break-word;
+    overflow-wrap:break-word;
+}
+
+.obsValor{
+    max-height:90px;
+    overflow:hidden;
+}
+
+.dataHora{
+    margin-top:auto;
+    padding-top:8px;
+    border-top:1px dashed #999;
+}
+
+@media print{
+
+    body{
+        background:#fff;
+        padding:0;
+    }
+
+    .topo,
+    .botoes,
+    .editor,
+    h1{
+        display:none;
+    }
+
+    .painel{
+        box-shadow:none;
+        padding:0;
+        margin:0;
+        max-width:none;
+    }
+
+    .modoA4{
+        display:grid !important;
+        grid-template-columns:repeat(2, 7.5cm) !important;
+        justify-content:center !important;
+        gap:0.8cm !important;
+    }
+
+    .modoA4 .etiqueta{
+        width:7.5cm !important;
+        height:11cm !important;
+    }
+
+    .modo80{
+        display:flex !important;
+        flex-direction:column !important;
+        align-items:center !important;
+        width:80mm !important;
+        margin:0 auto !important;
+        gap:0 !important;
+    }
+
+    .modo80 .etiqueta{
+        width:80mm !important;
+        height:auto !important;
+        border-radius:0 !important;
+        border-bottom:2px dashed #000 !important;
+        margin:0 !important;
+    }
+
+    @page{
+        size:A4;
+        margin:0.7cm;
+    }
+
+}
+
+@media(max-width:850px){
+
+    .topo{
+        grid-template-columns:1fr;
+    }
+
+    .gridCampos{
+        grid-template-columns:1fr;
+    }
+
+    .modoA4{
+        grid-template-columns:1fr;
+    }
+
+}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta htt-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Emissão de Garantia</title>
+    <link rel="stylesheet" href="garantiamain.css">
+    <link rel="icon" href="./img/logo.ico">
+
+</head>
+
+<body>
+
+    <div class="dados">
+        <img src="./img/Fundo FB Calango.png" width="450">
+        <br/>
+        <h4>Cliente: </h4><br/>
+        <input type="text" id="cliente" /> <br /><br />
+
+        <h4>Vendedor(a): </h4><br/>
+        <input type="text" id="vendedor" /> <br /><br />
+
+        <h4>Produto:</h4> <br/>
+        <input type="text" id="aparelho" /> <br /><br />
+
+
+        <h4>Valor R$: </h4><br/>
+        <input type="number" step="0,01" id="valor" /> <br /><br />
+
+
+        <a href onclick="gerarGarantia()" class="BUTTON_TRS">IMPRIMIR</a>
+        <br/>
+        
+
+    </div>
+    
+    <div class="print">
+        <img src="./img/Fundo FB Calango.png" width="650">
+        <h1>Termo de Garantia</h1>
+         <p>Cliente: <span id="garantia_cliente"></span></p>
+         <br/>
+         <p>Vendedor(a): <span id="garantia_vendedor"></span></p>
+         <br/>
+         <p>Produto: <span id="garantia_aparelho"></span></p>
+         <br/>
+         <p>Valor R$: <span id="garantia_valor">0,00</span></p>
+         <br/>
+         <p>Data: <span id="garantia_data"></span></p>
+         <br/>
+
+         <p>
+A loja WolfSet tem o compromisso de fornecer produtos de qualidade aos seus clientes. Estamos empenhados em oferecer uma experiência de compra satisfatória e, para isso, garantimos um período de 45 dias para cobertura de defeitos de fabricação.
+<br/>
+
+Essa garantia é válida a partir da data de recebimento do produto e está em conformidade com as leis e regulamentações aplicáveis ao comércio varejista.
+<br/>
+
+Em caso de dúvidas ou esclarecimentos adicionais, não hesite em entrar em contato com nossa equipe de atendimento ao cliente.
+<br/>
+A garantia de 45 dias da loja WolfSet cobre exclusivamente defeitos de fabricação. Essa cobertura inclui, mas não se limita a:
+<br/>
+1.Falhas de fabricação: Caso o produto apresente problemas devido a erros ou falhas na fabricação.
+<br/>
+
+2.Peças defeituosas: Se alguma peça ou componente do produto apresentar defeitos que prejudiquem seu funcionamento adequado.
+<br/>
+
+Restrições da Garantia:
+<br/>
+
+É importante ressaltar que a garantia não cobre os seguintes casos:
+<br/>
+1. Uso indevido: Danos causados por mau uso, negligência, uso indevido ou não seguimento das instruções de uso do produto.
+<br/>
+2.Desgaste Natural: A garantia não se aplica a desgastes naturais que ocorram com o uso regular do produto ao longo do tempo.
+<br/>
+3.Danos acidentais ou intencionais: A garantia não cobre danos causados por acidentes, alterações não autorizadas ou tentativas de reparo por pessoas não autorizadas.
+<br/>
+Ao adquirir este Produto, o proprietário concorda em cumprir todas as cláusulas estabelecidas neste termo de garantia.
+
+
+            </p>
+
+    </div>
+
+    <script>
+        function gerarGarantia() {
+            document.getElementById('garantia_cliente').innerHTML = document.getElementById('cliente').value;
+            document.getElementById('garantia_vendedor').innerHTML = document.getElementById('vendedor').value;
+            document.getElementById('garantia_aparelho').innerHTML = document.getElementById('aparelho').value;
+            document.getElementById('garantia_valor').innerHTML = parseFloat(document.getElementById('valor').value).toLocaleString('pt-br', {minimumFractionDigits: 2});
+            document.getElementById('garantia_data').innerHTML = dataAtual();
+            window.print();
+        }
+        function dataAtual() {
+            let data = new Date();
+            return data.getDate() + "/0" + (data.getMonth()+1) + "/" + data.getFullYear();
+        }
+
+    </script>
+</body>
+</html>

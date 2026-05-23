@@ -1,0 +1,152 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --text-color: white;
+  --bg-color: #000;
+  --stroke-color: rgba(255, 255, 255, 0.25);
+  --surface-color: rgba(255, 255, 255, 0.05);
+  --surface-color-hover: rgba(255, 255, 255, 0.08);
+  --highlight-color: rgba(255, 255, 255, 0.15);
+}
+
+body {
+  background: var(--bg-color);
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+  color: var(--text-color);
+  padding: 20px;
+}
+
+body * {
+  color: var(--text-color);
+}
+
+.dados {
+  max-width: 420px;
+  margin: 40px auto;
+  padding: 24px;
+
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  border-radius: 20px;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  text-align: center;
+
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+.dados h1 {
+  font-size: 28px;
+  margin-bottom: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.dados p,
+.dados span {
+  font-size: 16px;
+  line-height: 26px;
+  opacity: 0.95;
+}
+
+.print {
+  font-family: Arial, Helvetica, sans-serif;
+  display: none;
+
+  margin: 20px auto;
+  padding: 25px;
+
+  width: 320px;
+
+  border-radius: 20px;
+  background: white;
+  color: black;
+
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.print * {
+  color: black;
+}
+
+.assinatura {
+  border-top: 1px solid black;
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 10px;
+  font-size: 14px;
+}
+
+.fiive {
+  color: var(--text-color);
+  margin-top: 12px;
+  opacity: 0.8;
+}
+
+button,
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 14px;
+  margin-top: 12px;
+
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  border-radius: 12px;
+
+  outline: none;
+
+  backdrop-filter: blur(4px);
+
+  transition: 0.3s;
+}
+
+button:hover {
+  background: var(--surface-color-hover);
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border: 1px solid white;
+}
+
+@media (max-width: 500px) {
+  .dados {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .dados h1 {
+    font-size: 24px;
+  }
+
+  .print {
+    width: 100%;
+  }
+}
+
+@media print {
+  body {
+    background: white;
+  }
+
+  .print {
+    display: block;
+    box-shadow: none;
+  }
+
+  .dados {
+    display: none;
+  }
+}

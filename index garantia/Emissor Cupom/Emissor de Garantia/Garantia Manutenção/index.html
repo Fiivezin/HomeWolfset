@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Garantia de Manutenção – WolfSet</title>
+  <link rel="stylesheet" href="garantiamain.css">
+
+  <!-- Ajustes para impressão em bobina 80 mm -->
+  <style>
+    @media screen { .print { display: none; } }
+
+    @media print {
+      @page { size: 80mm auto; margin: 0; }
+
+      body {
+        width: 80mm;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        font-size: 11px;
+        line-height: 1.25;
+      }
+
+      .dados  { display: none !important; }
+      .print  { display: block !important; }
+
+      .print img   { max-width: 100%; height: auto; }
+      .print p, .print li { margin: 4px 0; word-break: break-word; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Formulário de entrada -->
+  <div class="dados">
+    <img src="./img/Fundo FB Calango.png" width="450" alt="Logo"><br>
+
+    <h4>Cliente:</h4>
+    <input type="text" id="cliente"><br><br>
+
+    <h4>Técnico responsável:</h4>
+    <select id="tecnicoSelect" onchange="toggleOutro()">
+      <option value="Gean Cardoso">Gean Cardoso</option>
+      <option value="Pedro Sampaio">Pedro Sampaio</option>
+      <option value="Filipe">Filipe</option>
+      <option value="outro">Outro...</option>
+    </select>
+    <input type="text" id="tecnicoOutro" placeholder="Digite o nome" style="display:none;margin-top:6px;"><br><br>
+
+    <h4>Aparelho (modelo):</h4>
+    <input type="text" id="aparelho"><br><br>
+
+    <h4>Serviço realizado:</h4>
+    <input type="text" id="servico"><br><br>
+
+    <h4>Peças substituídas (opcional):</h4>
+    <input type="text" id="pecas"><br><br>
+
+    <h4>Valor total R$:</h4>
+    <input type="number" step="0.01" id="valor"><br><br>
+
+    <a href="#" onclick="gerarGarantia()" class="BUTTON_TRS">IMPRIMIR</a>
+  </div>
+
+  <!-- Recibo impresso -->
+  <div class="print">
+    <img src="./img/Fundo FB Calango.png" width="650" alt="Logo">
+    <h2>Termo de Garantia de Manutenção</h2>
+
+    <p>Cliente: <span id="g_cliente"></span></p>
+    <p>Técnico: <span id="g_tecnico"></span></p>
+    <p>Aparelho: <span id="g_aparelho"></span></p>
+    <p>Serviço: <span id="g_servico"></span></p>
+    <p>Peças: <span id="g_pecas"></span></p>
+    <p>Valor R$: <span id="g_valor">0,00</span></p>
+    <p>Data: <span id="g_data"></span></p>
+
+    <p>A WolfSet garante os serviços de manutenção e as peças substituídas pelo período de <strong>90 dias</strong>,
+       contado da data acima, de acordo com o art. 26, II, do Código de Defesa do Consumidor.</p>
+
+    <p>Esta garantia cobre exclusivamente:</p>
+    <ul>
+      <li>Defeitos de instalação ou de serviço realizados pela WolfSet.</li>
+      <li>Peças novas instaladas durante o reparo, contra falhas de fabricação.</li>
+    </ul>
+
+    <p>A garantia perde a validade se:</p>
+    <ul>
+      <li>O aparelho for aberto por terceiros ou sofrer nova intervenção sem autorização por escrito da WolfSet.</li>
+      <li>Houver danos causados por queda, umidade/líquidos, impactos, mau uso ou tentativas de reparo pelo próprio usuário.</li>
+      <li>For identificado uso de componentes não originais após o serviço.</li>
+    </ul>
+
+    <p>Em caso de defeito coberto, a WolfSet realizará, sem custo, novo reparo ou a substituição da peça instalada, dentro do prazo de garantia.</p>
+
+    <p>Ao assinar este termo, o cliente declara ter recebido o aparelho em pleno funcionamento e concorda com todas as condições acima.</p>
+
+    <br><br>
+    <p style="text-align:center">_____________________________________<br>
+       Assinatura do Cliente</p>
+  </div>
+
+  <script>
+    function toggleOutro() {
+      const sel = document.getElementById('tecnicoSelect');
+      const outro = document.getElementById('tecnicoOutro');
+      outro.style.display = sel.value === 'outro' ? 'block' : 'none';
+    }
+
+    function gerarGarantia() {
+      const sel = document.getElementById('tecnicoSelect');
+      let tecnico = sel.value;
+      if (tecnico === 'outro') {
+        tecnico = document.getElementById('tecnicoOutro').value.trim() || '—';
+      }
+
+      document.getElementById('g_cliente').textContent  = document.getElementById('cliente').value;
+      document.getElementById('g_tecnico').textContent  = tecnico;
+      document.getElementById('g_aparelho').textContent = document.getElementById('aparelho').value;
+      document.getElementById('g_servico').textContent  = document.getElementById('servico').value;
+      document.getElementById('g_pecas').textContent    = document.getElementById('pecas').value || '—';
+
+      const v = parseFloat(document.getElementById('valor').value || 0);
+      document.getElementById('g_valor').textContent = v.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+
+      document.getElementById('g_data').textContent = new Date().toLocaleDateString('pt-BR');
+      window.print();
+    }
+  </script>
+</body>
+</html>

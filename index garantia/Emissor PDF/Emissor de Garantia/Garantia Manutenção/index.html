@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Garantia de Manutenção</title>
+  <link rel="stylesheet" href="garantiamain.css">
+  <link rel="icon" href="./img/logo.ico">
+
+  <!-- Apenas exibe/oculta na impressão ― sem formatação 80 mm -->
+  <style>
+    @media screen { .print { display:none; } }
+    @media print  { .dados { display:none; } }
+  </style>
+</head>
+
+<body>
+
+  <!-- FORMULÁRIO DE ENTRADA -->
+  <div class="dados">
+    <img src="./img/Fundo FB Calango.png" width="450" alt="Logo"><br><br>
+
+    <h4>Cliente:</h4>
+    <input type="text" id="cliente"><br><br>
+
+    <h4>Técnico responsável:</h4>
+    <select id="tecnicoSelect" onchange="toggleOutro()" style="width:260px;">
+      <option value="Gean Cardoso">Gean Cardoso</option>
+      <option value="Pedro Sampaio">Pedro Sampaio</option>
+      <option value="Filipe">Filipe</option>
+      <option value="outro">Outro…</option>
+    </select>
+    <input type="text" id="tecnicoOutro" placeholder="Digite o nome"
+           style="display:none;margin-top:6px;width:250px;"><br><br>
+
+    <h4>Aparelho (modelo):</h4>
+    <input type="text" id="aparelho"><br><br>
+
+    <h4>Serviço de manutenção realizado:</h4>
+    <input type="text" id="manutencao"><br><br>
+
+    <h4>Valor total&nbsp;R$:</h4>
+    <input type="number" step="0.01" id="valor"><br><br>
+
+    <a href="#" onclick="gerarGarantia()" class="BUTTON_TRS">IMPRIMIR</a>
+  </div>
+
+  <!-- RECIBO / TERMO DE GARANTIA -->
+  <div class="print">
+    <img src="./img/Fundo FB Calango.png" width="650" alt="Logo">
+    <h2 style="margin-bottom:8px">Termo de Garantia e Responsabilidade<br>Serviços de Manutenção</h2>
+
+    <p><strong>Cliente:</strong> <span id="g_cliente"></span></p>
+    <p><strong>Técnico:</strong> <span id="g_tecnico"></span></p>
+    <p><strong>Aparelho:</strong> <span id="g_aparelho"></span></p>
+    <p><strong>Serviço:</strong> <span id="g_manutencao"></span></p>
+    <p><strong>Valor&nbsp;R$:</strong> <span id="g_valor">0,00</span></p>
+    <p><strong>Data:</strong> <span id="g_data"></span></p>
+
+    <p>
+      Este termo estabelece as condições da garantia concedida pela <strong>WolfSet</strong>
+      para os serviços de manutenção executados no aparelho acima identificado.
+    </p>
+
+    <ol>
+      <li><strong>Cobertura da Garantia:</strong> defeitos decorrentes do serviço ou de componentes
+          substituídos pela WolfSet.</li>
+
+      <li><strong>Prazo de Garantia:</strong> <strong>74 (Setenta e Quatro) dias</strong> contados da data
+          do serviço.</li>
+
+      <li><strong>Exclusões:</strong> danos por líquidos, impacto, queda, mau uso, oxidação,
+          modificações não autorizadas, tentativa de reparo por terceiros ou uso de acessórios
+         /componentes não originais.</li>
+
+      <li><strong>Perda Automática da Garantia:</strong> violação de lacres ou selos, abertura do
+          aparelho por terceiros, remoção de peças instaladas, uso de software não oficial que
+          altere o funcionamento do hardware.</li>
+
+      <li><strong>Procedimento para Acionar a Garantia:</strong> apresentar este termo e a nota de
+          serviço. A WolfSet realizará triagem técnica; se constatado defeito coberto, o reparo ou
+          substituição será feito sem custos.</li>
+
+      <li><strong>Prazo para Orçamento e Aceite:</strong> orçamentos são válidos por 10&nbsp;dias
+          corridos. Após esse período, ficarão sujeitos a nova avaliação de preço e prazo.</li>
+
+      <li><strong>Prazo para Retirada:</strong> o cliente deve retirar o aparelho em até
+          30&nbsp;dias após notificação de conclusão. Findo o prazo, poderá ser cobrada taxa de
+          armazenagem de R$ 5,00/dia.</li>
+
+      <li><strong>Responsabilidade sobre Dados:</strong> recomendamos backup prévio. A WolfSet não
+          se responsabiliza por perda de dados decorrente de processos técnicos inevitáveis.</li>
+
+      <li><strong>Limitação de Responsabilidade:</strong> a WolfSet não se responsabiliza por
+          danos indiretos, lucros cessantes ou prejuízos decorrentes da impossibilidade de uso do
+          aparelho durante o período de reparo.</li>
+
+      <li><strong>Foro:</strong> para dirimir eventuais controvérsias, fica eleito o foro da
+          comarca de Sorocaba/SP, com renúncia de qualquer outro, por mais privilegiado que seja.
+      </li>
+    </ol>
+
+    <p>
+      Ao assinar, o cliente declara ter recebido o aparelho testado e em pleno funcionamento,
+      estando ciente e de acordo com todas as condições acima.
+    </p>
+
+    <p style="margin-top:40px;text-align:center">
+      _____________________________________<br>
+      Assinatura do Cliente
+    </p>
+  </div>
+
+  <script>
+    function toggleOutro() {
+      document.getElementById('tecnicoOutro').style.display =
+        (document.getElementById('tecnicoSelect').value === 'outro') ? 'block' : 'none';
+    }
+
+    function gerarGarantia() {
+      const sel      = document.getElementById('tecnicoSelect');
+      let   tecnico  = sel.value === 'outro'
+                       ? (document.getElementById('tecnicoOutro').value.trim() || '—')
+                       : sel.value;
+
+      document.getElementById('g_cliente').textContent   = document.getElementById('cliente').value;
+      document.getElementById('g_tecnico').textContent   = tecnico;
+      document.getElementById('g_aparelho').textContent  = document.getElementById('aparelho').value;
+      document.getElementById('g_manutencao').textContent= document.getElementById('manutencao').value;
+
+      const v = parseFloat(document.getElementById('valor').value || 0);
+      document.getElementById('g_valor').textContent =
+        v.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+
+      document.getElementById('g_data').textContent = new Date().toLocaleDateString('pt-BR');
+
+      window.print();
+    }
+  </script>
+</body>
+</html>

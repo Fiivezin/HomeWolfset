@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta htt-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Emissão de Garantia</title>
+     <link rel="stylesheet" href="main.css">
+     <link rel="icon" href="./logo.ico">
+</head>
+
+<body>
+    <div class="dados">
+        <h1>Emissor de Vale Wolfset</h1>
+        <br/>
+        <h2>Cliente: </h2><br/>
+        <input type="text" id="cliente" /> <br /><br />
+        <h2>Valor R$: </h2><br/>
+        <input type="number" step="0,01" id="valor" /> <br /><br />
+        <button onclick="gerarGarantia()">Gerar Vale</button>  
+        <br/>   
+        <br/> 
+        <br/> 
+        <br/> 
+        <br/> 
+        <div class="fiive">by FiiveElements</div>
+    </div>
+
+    <div class="print">
+        <h2>Vale Compras Wolfset</h2>
+        <br/>
+         <p>Cliente: <span id="garantia_cliente"></span></p>
+         <br/>
+         <h3>Valor R$: <span id="garantia_valor">0,00</span></h3>
+         <br/>
+         <p>Data: <span id="garantia_data"></span></p>
+         <br/>
+
+         <p>Wolfset Agradece a preferência!
+            </p>
+
+         <br /><br />
+         <br/>
+         <br/>
+         <div class="assinatura">Assinatura</div>
+    </div>
+
+    <script>
+        function gerarGarantia() {
+            document.getElementById('garantia_cliente').innerHTML = document.getElementById('cliente').value;
+            document.getElementById('garantia_valor').innerHTML = parseFloat(document.getElementById('valor').value).toLocaleString('pt-br', {minimumFractionDigits: 2});
+            document.getElementById('garantia_data').innerHTML = dataAtual();
+            window.print();
+        }
+        function dataAtual() {
+            let data = new Date();
+            return data.getDate() + "/" + (data.getMonth()+1) + "/" + data.getFullYear();
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --text-color: white;
+  --bg-color: #000;
+  --stroke-color: rgba(255, 255, 255, 0.2);
+  --surface-color: rgba(255, 255, 255, 0.05);
+  --surface-hover: rgba(255, 255, 255, 0.08);
+  --highlight-color: rgba(255, 255, 255, 0.15);
+}
+
+body {
+  background: var(--bg-color);
+  min-height: 100vh;
+  padding: 20px;
+  font-family: "Inter", sans-serif;
+  color: var(--text-color);
+}
+
+body * {
+  color: var(--text-color);
+}
+
+.dados {
+  max-width: 420px;
+  margin: 40px auto;
+  padding: 24px;
+
+  text-align: center;
+
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  border-radius: 24px;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+.dados h1 {
+  font-size: 30px;
+  margin-bottom: 18px;
+
+  color: white;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.dados p,
+.dados span,
+.dados label {
+  font-size: 16px;
+  line-height: 26px;
+  opacity: 0.95;
+}
+
+.print {
+  display: none;
+
+  width: 320px;
+  margin: 20px auto;
+  padding: 25px;
+
+  border-radius: 24px;
+
+  background: white;
+  color: black;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+}
+
+.print * {
+  color: black;
+}
+
+.assinatura {
+  border-top: 1px solid black;
+  text-align: center;
+
+  margin-top: 45px;
+  padding-top: 10px;
+
+  font-size: 14px;
+}
+
+.fiive {
+  color: var(--text-color);
+  margin-top: 14px;
+  opacity: 0.85;
+}
+
+.termo {
+  text-align: center;
+  margin-top: 18px;
+  line-height: 24px;
+}
+
+input,
+textarea,
+select,
+button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 14px;
+
+  border-radius: 14px;
+  border: 1px solid var(--stroke-color);
+
+  background: var(--surface-color);
+
+  outline: none;
+
+  backdrop-filter: blur(5px);
+
+  transition: 0.3s;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border: 1px solid white;
+}
+
+button {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+button:hover {
+  background: var(--surface-hover);
+  border: 1px solid white;
+}
+
+@media (max-width: 500px) {
+  body {
+    padding: 14px;
+  }
+
+  .dados {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .dados h1 {
+    font-size: 25px;
+  }
+
+  .print {
+    width: 100%;
+  }
+}
+
+@media print {
+  body {
+    background: white;
+    padding: 0;
+  }
+
+  .print {
+    display: block;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .dados {
+    display: none;
+  }
+}
