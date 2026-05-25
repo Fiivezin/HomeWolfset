@@ -52,6 +52,11 @@ function criarCampos(){
                 </div>
 
                 <div>
+                    <label>O.S</label>
+                    <input type="text" id="os${i}">
+                </div>
+
+                <div>
                     <label>Senha</label>
                     <input type="text" id="senha${i}">
                 </div>
@@ -113,6 +118,7 @@ function gerarEtiquetas(){
 
         const aparelho = document.getElementById(`aparelho${i}`).value;
         const senha = document.getElementById(`senha${i}`).value;
+        const os = document.getElementById(`os${i}`).value;
         const observacao = document.getElementById(`observacao${i}`).value;
 
         folha.innerHTML += `
@@ -130,6 +136,11 @@ function gerarEtiquetas(){
             <div class="item">
                 <div class="titulo">Aparelho</div>
                 <div class="valor">${aparelho}</div>
+            </div>
+
+            <div class="item">
+                <div class="titulo">O.S</div>
+                <div class="valor">${os}</div>
             </div>
 
             <div class="item">
